@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinkHue | Personal Color & Beauty Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">✿ Pink<span>Hue</span>
+    <small>YOUR PERSONAL BEAUTY STUDIO</small>
+  </a>
+  <nav>
+    <a href="#analysis">Color Analysis</a>
+    <a href="#tryon">Virtual Try-On</a>
+    <a href="#colors">500 Colors</a>
+  </nav>
+  <a href="#analysis" class="nav-btn">Explore Your Glow ✦</a>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow">✦ YOUR COLORS, YOUR GLOW ✦</span>
+    <h1>Find the colors<br>that make you <em>glow.</em></h1>
+    <p>
+      Temukan warna hijab dan makeup yang harmonis dengan
+      warna kulitmu. Upload foto dan temukan warna terbaikmu!
+    </p>
+    <a href="#analysis" class="btn pink">Mulai Analisis →</a>
+    <a href="#colors" class="text-link">Jelajahi 500 warna</a>
+    <small class="hero-note">♡ Beauty is personal. Your colors should be too.</small>
+  </div>
+
+  <div class="hero-art">
+    <div class="sun"></div>
+    <div class="model">
+      <div class="model-face">
+        <span class="eye left"></span>
+        <span class="eye right"></span>
+        <span class="nose"></span>
+        <span class="lips"></span>
+      </div>
+      <div class="model-hijab"></div>
+    </div>
+    <div class="sticker">♡<small>COLOR<br>CONFIDENCE</small></div>
+    <span class="sparkle">✦</span>
+  </div>
+</section>
+
+<section class="section" id="analysis">
+  <div class="heading">
+    <span class="eyebrow">01 — LET'S DISCOVER</span>
+    <h2>Mulai dari foto wajahmu</h2>
+    <p>Gunakan foto dengan pencahayaan alami dan wajah menghadap kamera.</p>
+  </div>
+
+  <div class="two-columns">
+    <div class="panel">
+      <div class="photo-area">
+        <div id="emptyPhoto">
+          <div class="upload-icon">↑</div>
+          <h3>Upload Your Photo</h3>
+          <p>JPG, PNG, WEBP · Maksimal 15 MB</p>
+        </div>
+        <img id="photoPreview" hidden alt="Foto pengguna">
+      </div>
+
+      <div class="actions">
+        <label for="photoInput" class="btn pink">Pilih Foto</label>
+        <input type="file" id="photoInput" accept="image/*" hidden>
+        <button class="btn yellow" id="cameraButton">Buka Kamera</button>
+      </div>
+      <small class="privacy">♡ Foto diproses di browser pada demo ini.</small>
+    </div>
+
+    <div class="panel profile-panel">
+      <h3>✿ Your Color Profile</h3>
+
+      <div id="emptyProfile">
+        <span>✧</span>
+        <b>Your glow journey starts here</b>
+        <p>Upload foto dan tekan analisis untuk melihat perkiraan profil warna.</p>
+      </div>
+
+      <div id="profileResult" hidden>
+        <div class="result-row">
+          <span>Skin Tone</span><b id="skinTone">—</b>
+        </div>
+        <div class="result-row">
+          <span>Undertone</span><b id="undertone">—</b>
+        </div>
+        <div class="result-row">
+          <span>Color Season</span><b id="season">—</b>
+        </div>
+
+        <h4>Rekomendasi warna hijab</h4>
+        <div id="recommendedColors" class="recommendations"></div>
+
+        <h4>Rekomendasi makeup</h4>
+        <div id="recommendedMakeup" class="recommendations"></div>
+
+        <p class="disclaimer">
+          Hasil merupakan estimasi sederhana dari foto, bukan analisis profesional.
+          Pencahayaan, kamera, filter, dan makeup dapat memengaruhi hasil.
+        </p>
+      </div>
+
+      <button class="btn pink full" id="analyzeButton" disabled>
+        Analisis Warna Kulit ✦
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section pink-section" id="tryon">
+  <div class="heading">
+    <span class="eyebrow">02 — TRY YOUR GLOW</span>
+    <h2>Virtual Hijab & Makeup Try-On</h2>
+    <p>Coba warna hijab dan makeup pada foto yang kamu unggah.</p>
+  </div>
+
+  <div class="two-columns">
+    <div class="panel">
+      <div class="try-preview">
+        <canvas id="tryCanvas"></canvas>
+        <span id="tryEmpty">Upload foto terlebih dahulu ♡</span>
+      </div>
+      <p class="privacy">
+        Simulasi warna merupakan overlay ilustratif, bukan hasil penggantian hijab fotorealistis.
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="tabs">
+        <button class="tab active" data-tab="hijab">Hijab</button>
+        <button class="tab" data-tab="makeup">Makeup</button>
+      </div>
+
+      <div id="hijabPanel">
+        <label>Warna Hijab</label>
+        <div class="selected-color">
+          <span id="hijabSwatch"></span>
+          <b id="hijabName">Dusty Rose</b>
+        </div>
+        <div id="hijabChoices" class="color-choices"></div>
+        <label>Custom Color</label>
+        <input type="color" id="hijabPicker" value="#c98591">
+      </div>
+
+      <div id="makeupPanel" hidden>
+        <label>Jenis Makeup</label>
+        <div class="makeup-types">
+          <button class="type active" data-type="lip">Lipstick</button>
+          <button class="type" data-type="blush">Blush</button>
+          <button class="type" data-type="shadow">Eyeshadow</button>
+        </div>
+
+        <label>Warna Makeup</label>
+        <div class="selected-color">
+          <span id="makeupSwatch"></span>
+          <b id="makeupName">Peach Nude</b>
+        </div>
+        <div id="makeupChoices" class="color-choices"></div>
+        <label>Custom Color</label>
+        <input type="color" id="makeupPicker" value="#d98283">
+
+        <label class="range-label">
+          Intensitas <output id="intensityText">45%</output>
+        </label>
+        <input type="range" id="intensity" min="10" max="85" value="45">
+      </div>
+
+      <button class="btn yellow full" id="resetButton">Reset Tampilan</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="colors">
+  <div class="heading">
+    <span class="eyebrow">03 — COLOR LIBRARY</span>
+    <h2>Explore Your 500 Colors</h2>
+    <p>Temukan warna hijab dan makeup dari koleksi warna PinkHue.</p>
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="searchColor" placeholder="Cari warna: rose, olive, peach...">
+    <select id="categoryFilter">
+      <option value="all">Semua Kategori</option>
+      <option value="hijab">Hijab</option>
+      <option value="makeup">Makeup</option>
+    </select>
+    <select id="toneFilter">
+      <option value="all">Semua Undertone</option>
+      <option value="warm">Warm</option>
+      <option value="cool">Cool</option>
+      <option value="neutral">Neutral</option>
+    </select>
+  </div>
+
+  <div class="color-count" id="colorCount">500 warna</div>
+  <div class="palette-grid" id="paletteGrid"></div>
+</section>
+
+<section class="section">
+  <div class="final-card">
+    <div>
+      <span class="eyebrow">A LITTLE REMINDER</span>
+      <h2>Your best color is the one<br>that makes you feel lovely.</h2>
+      <p>Personal color adalah panduan, bukan aturan. Kamu tetap bebas memakai warna yang kamu sukai.</p>
+    </div>
+    <span class="flower">✿</span>
+  </div>
+</section>
+
+<footer>
+  <a class="logo" href="#">✿ Pink<span>Hue</span>
+    <small>YOUR PERSONAL BEAUTY STUDIO</small>
+  </a>
+  <p>Made with ♡ for your everyday glow.</p>
+  <small>© 2026 PinkHue</small>
+</footer>
+
+<div class="modal" id="cameraModal">
+  <div class="modal-content">
+    <button class="close" id="closeCamera">×</button>
+    <h2>Let's Take a Photo!</h2>
+    <p>Posisikan wajah di tengah kamera.</p>
+    <video id="cameraVideo" autoplay playsinline></video>
+    <div class="actions">
+      <button class="btn yellow" id="cancelCamera">Batal</button>
+      <button class="btn pink" id="capturePhoto">Ambil Foto ♡</button>
+    </div>
+    <p id="cameraError" class="error"></p>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
